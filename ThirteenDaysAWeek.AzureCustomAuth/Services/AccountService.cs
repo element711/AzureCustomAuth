@@ -4,6 +4,7 @@ using ThirteenDaysAWeek.AzureCustomAuth.Models;
 using ThirteenDaysAWeek.AzureCustomAuth.Handlers;
 using System.Collections.Generic;
 using System;
+using ThirteenDaysAWeek.AzureCustomAuth.Factories;
 
 namespace ThirteenDaysAWeek.AzureCustomAuth.Services
 {
@@ -41,11 +42,9 @@ namespace ThirteenDaysAWeek.AzureCustomAuth.Services
 				Password = password,
 				Email = email
 			};
-			Console.WriteLine(isLogin.ToString());
+
 			using (AuthenticationHandler handler = new AuthenticationHandler()) {
-				using (MobileServiceClient client = new MobileServiceClient(Preferences.AzureMobileServicesUrl,
-					                                   Preferences.AzureMobileServicesKey,
-					                                   handler)) {
+				using (MobileServiceClient client = MobileServiceClientFactory.CreateClient(handler)) {
 					var table = client.GetTable<Account>();
 					Dictionary<string, string> parameters = new Dictionary<string, string> {
 						{ "login", isLogin.ToString().ToLower()}
