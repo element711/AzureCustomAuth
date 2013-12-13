@@ -12,7 +12,7 @@ namespace ThirteenDaysAWeek.AzureCustomAuth
 
 		public static string AzureMobileServicesKey
 		{
-			get { return "{Eneter your Mobile Service Application Key here}"; }
+			get { return "{Enter your Mobile Service Application Key here}"; }
 		}
 	}
 }
