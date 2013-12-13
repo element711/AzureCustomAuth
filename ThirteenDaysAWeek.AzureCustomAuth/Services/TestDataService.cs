@@ -12,15 +12,18 @@ namespace ThirteenDaysAWeek.AzureCustomAuth.Services
 	{
 		public async Task AddTestData()
 		{
-			using (var client = MobileServiceClientFactory.CreateClient())
+			using (var handler = new ZumoAuthHeaderHandler())
 			{
-				var data = new TestData {
-					DateCreated = DateTime.Now
-				};
+				using (var client = MobileServiceClientFactory.CreateClient(handler))
+				{
+					var data = new TestData {
+						DateCreated = DateTime.Now
+					};
+	
+					var table = client.GetTable<TestData>();
 
-				var table = client.GetTable<TestData>();
-
-				await table.InsertAsync(data);
+					await table.InsertAsync(data);
+				}
 			}
 		}
 

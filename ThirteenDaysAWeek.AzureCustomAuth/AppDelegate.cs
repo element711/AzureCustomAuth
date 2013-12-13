@@ -37,8 +37,6 @@ namespace ThirteenDaysAWeek.AzureCustomAuth
 
 			return true;
 		}
-
-		public static bool IsLoggedIn {get; set;}
 	}
 }
 
